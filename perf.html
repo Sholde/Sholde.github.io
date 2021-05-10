@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-05-10 lun. 19:53 -->
+<!-- 2021-05-10 lun. 20:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Profile application with Linux perf</title>
@@ -239,34 +239,41 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0dd8a3e">1. Linux perf</a>
+<li><a href="#orgc8c35d7">1. Linux perf</a>
 <ul>
-<li><a href="#org064a1fb">1.1. Trace an application</a></li>
-<li><a href="#orgddb2983">1.2. Flat mode (pur sampling) no call-stack</a></li>
-<li><a href="#orgccb908b">1.3. Base output</a></li>
-<li><a href="#orge19c9e3">1.4. Curses output</a></li>
-<li><a href="#org36511c3">1.5. Annotate only one function</a></li>
-<li><a href="#orgb007afb">1.6. Wrapper for MPI</a></li>
-<li><a href="#orgdb34ece">1.7. Usage</a></li>
-<li><a href="#org82b8403">1.8. Profile ALL the system (in root or with good parameter)</a>
+<li><a href="#org7b65dd2">1.1. Trace an application</a></li>
+<li><a href="#org8e7a579">1.2. Flat mode (pur sampling) no call-stack</a></li>
+<li><a href="#org911bac8">1.3. Output</a>
 <ul>
-<li><a href="#org68af16a">1.8.1. With curses</a></li>
+<li><a href="#orgcb5e677">1.3.1. Base output</a></li>
+<li><a href="#orgc49cf69">1.3.2. Curses output</a></li>
+</ul>
+</li>
+<li><a href="#org92ce1a0">1.4. Annotate only one function</a></li>
+<li><a href="#org6c14d29">1.5. Wrapper for MPI</a>
+<ul>
+<li><a href="#org2279b98">1.5.1. Usage</a></li>
+</ul>
+</li>
+<li><a href="#orgb9131d0">1.6. Profile ALL the system (in root or with good parameter)</a>
+<ul>
+<li><a href="#orga3df127">1.6.1. With curses</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org1520b70">2. Hotspot</a></li>
-<li><a href="#org559009c">3. Memory tracking</a></li>
+<li><a href="#org4f3ce37">2. Hotspot</a></li>
+<li><a href="#org7717ca1">3. Memory tracking</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0dd8a3e" class="outline-2">
-<h2 id="org0dd8a3e"><span class="section-number-2">1</span> Linux perf</h2>
+<div id="outline-container-orgc8c35d7" class="outline-2">
+<h2 id="orgc8c35d7"><span class="section-number-2">1</span> Linux perf</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org064a1fb" class="outline-3">
-<h3 id="org064a1fb"><span class="section-number-3">1.1</span> Trace an application</h3>
+<div id="outline-container-org7b65dd2" class="outline-3">
+<h3 id="org7b65dd2"><span class="section-number-3">1.1</span> Trace an application</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-shell">perf record --call-graph lbr ./test
@@ -275,8 +282,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgddb2983" class="outline-3">
-<h3 id="orgddb2983"><span class="section-number-3">1.2</span> Flat mode (pur sampling) no call-stack</h3>
+<div id="outline-container-org8e7a579" class="outline-3">
+<h3 id="org8e7a579"><span class="section-number-3">1.2</span> Flat mode (pur sampling) no call-stack</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <pre class="src src-shell">perf record ./test
@@ -289,9 +296,13 @@
 </div>
 </div>
 
-<div id="outline-container-orgccb908b" class="outline-3">
-<h3 id="orgccb908b"><span class="section-number-3">1.3</span> Base output</h3>
+<div id="outline-container-org911bac8" class="outline-3">
+<h3 id="org911bac8"><span class="section-number-3">1.3</span> Output</h3>
 <div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-orgcb5e677" class="outline-4">
+<h4 id="orgcb5e677"><span class="section-number-4">1.3.1</span> Base output</h4>
+<div class="outline-text-4" id="text-1-3-1">
 <div class="org-src-container">
 <pre class="src src-shell">perf report --stdio
 </pre>
@@ -299,19 +310,20 @@
 </div>
 </div>
 
-<div id="outline-container-orge19c9e3" class="outline-3">
-<h3 id="orge19c9e3"><span class="section-number-3">1.4</span> Curses output</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-orgc49cf69" class="outline-4">
+<h4 id="orgc49cf69"><span class="section-number-4">1.3.2</span> Curses output</h4>
+<div class="outline-text-4" id="text-1-3-2">
 <div class="org-src-container">
 <pre class="src src-shell">perf report
 </pre>
 </div>
 </div>
 </div>
+</div>
 
-<div id="outline-container-org36511c3" class="outline-3">
-<h3 id="org36511c3"><span class="section-number-3">1.5</span> Annotate only one function</h3>
-<div class="outline-text-3" id="text-1-5">
+<div id="outline-container-org92ce1a0" class="outline-3">
+<h3 id="org92ce1a0"><span class="section-number-3">1.4</span> Annotate only one function</h3>
+<div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
 <pre class="src src-shell">perf annotate main [--stdio]
 </pre>
@@ -319,9 +331,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgb007afb" class="outline-3">
-<h3 id="orgb007afb"><span class="section-number-3">1.6</span> Wrapper for MPI</h3>
-<div class="outline-text-3" id="text-1-6">
+<div id="outline-container-org6c14d29" class="outline-3">
+<h3 id="org6c14d29"><span class="section-number-3">1.5</span> Wrapper for MPI</h3>
+<div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #998f84;">#</span><span style="color: #998f84;">!/bin/</span><span style="color: #ff2c4b; font-weight: bold;">sh</span>
 
@@ -332,30 +344,30 @@ perf record -o perf-${<span style="color: #ffa724;">H</span>}-${<span style="col
 </pre>
 </div>
 </div>
-</div>
 
-<div id="outline-container-orgdb34ece" class="outline-3">
-<h3 id="orgdb34ece"><span class="section-number-3">1.7</span> Usage</h3>
-<div class="outline-text-3" id="text-1-7">
+<div id="outline-container-org2279b98" class="outline-4">
+<h4 id="org2279b98"><span class="section-number-4">1.5.1</span> Usage</h4>
+<div class="outline-text-4" id="text-1-5-1">
 <div class="org-src-container">
 <pre class="src src-shell">mpirun -np 4 mpiperf ./program options
 </pre>
 </div>
 </div>
 </div>
+</div>
 
-<div id="outline-container-org82b8403" class="outline-3">
-<h3 id="org82b8403"><span class="section-number-3">1.8</span> Profile ALL the system (in root or with good parameter)</h3>
-<div class="outline-text-3" id="text-1-8">
+<div id="outline-container-orgb9131d0" class="outline-3">
+<h3 id="orgb9131d0"><span class="section-number-3">1.6</span> Profile ALL the system (in root or with good parameter)</h3>
+<div class="outline-text-3" id="text-1-6">
 <div class="org-src-container">
 <pre class="src src-shell">perf record -a --call-graph lbr
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org68af16a" class="outline-4">
-<h4 id="org68af16a"><span class="section-number-4">1.8.1</span> With curses</h4>
-<div class="outline-text-4" id="text-1-8-1">
+<div id="outline-container-orga3df127" class="outline-4">
+<h4 id="orga3df127"><span class="section-number-4">1.6.1</span> With curses</h4>
+<div class="outline-text-4" id="text-1-6-1">
 <div class="org-src-container">
 <pre class="src src-shell">perf top
 </pre>
@@ -365,8 +377,8 @@ perf record -o perf-${<span style="color: #ffa724;">H</span>}-${<span style="col
 </div>
 </div>
 
-<div id="outline-container-org1520b70" class="outline-2">
-<h2 id="org1520b70"><span class="section-number-2">2</span> Hotspot</h2>
+<div id="outline-container-org4f3ce37" class="outline-2">
+<h2 id="org4f3ce37"><span class="section-number-2">2</span> Hotspot</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <b>Link:</b> <a href="https://github.com/KDAB/hotspot">https://github.com/KDAB/hotspot</a>
@@ -379,8 +391,8 @@ perf record -o perf-${<span style="color: #ffa724;">H</span>}-${<span style="col
 </div>
 </div>
 
-<div id="outline-container-org559009c" class="outline-2">
-<h2 id="org559009c"><span class="section-number-2">3</span> Memory tracking</h2>
+<div id="outline-container-org7717ca1" class="outline-2">
+<h2 id="org7717ca1"><span class="section-number-2">3</span> Memory tracking</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <b>Link:</b> <a href="https://github.com/memtt/malt">https://github.com/memtt/malt</a>

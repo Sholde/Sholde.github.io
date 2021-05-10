@@ -39,17 +39,18 @@
   
   (better callstack for hotspot)
 
-** Base output
+** Output
+*** Base output
 
-   #+BEGIN_SRC shell
-     perf report --stdio
-   #+END_SRC
+    #+BEGIN_SRC shell
+      perf report --stdio
+    #+END_SRC
   
-** Curses output
+*** Curses output
 
-   #+BEGIN_SRC shell
-     perf report
-   #+END_SRC
+    #+BEGIN_SRC shell
+      perf report
+    #+END_SRC
   
 ** Annotate only one function
 
@@ -68,11 +69,11 @@
      perf record -o perf-${H}-${P}.data  $@
    #+END_SRC
   
-** Usage
+*** Usage
 
-   #+BEGIN_SRC shell
-     mpirun -np 4 mpiperf ./program options
-   #+END_SRC
+    #+BEGIN_SRC shell
+      mpirun -np 4 mpiperf ./program options
+    #+END_SRC
 
 ** Profile ALL the system (in root or with good parameter)
 
