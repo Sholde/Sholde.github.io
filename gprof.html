@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-05-10 lun. 20:44 -->
+<!-- 2021-05-10 lun. 20:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Secret page</title>
+<title>gprof</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Sholde" />
 <style type="text/css">
@@ -234,56 +234,94 @@
 </head>
 <body>
 <div id="content">
-<h1 class="title">Secret page</h1>
+<h1 class="title">gprof</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfc4fe2d">1. Linux command line</a></li>
-<li><a href="#org1660bf9">2. HPC wiki</a>
+<li><a href="#org4d0b091">1. Installation</a>
 <ul>
-<li><a href="#org6f3732a">2.1. Measure time</a></li>
-<li><a href="#org3e38274">2.2. Measure performance using tools</a></li>
-<li><a href="#org13bcc25">2.3. Optimization</a></li>
+<li><a href="#org93c3d3f">1.1. Example with Arch Linux</a></li>
+</ul>
+</li>
+<li><a href="#orgaac4ca5">2. Usage</a>
+<ul>
+<li><a href="#org4ffecde">2.1. Compilation</a></li>
+<li><a href="#orgf5bbfe7">2.2. Run your app</a></li>
+<li><a href="#orgbb04b4a">2.3. Using gprof command</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgfc4fe2d" class="outline-2">
-<h2 id="orgfc4fe2d"><span class="section-number-2">1</span> Linux command line</h2>
+<div id="outline-container-org4d0b091" class="outline-2">
+<h2 id="org4d0b091"><span class="section-number-2">1</span> Installation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-In comming.
+Use your package manager to install it.
 </p>
 </div>
+
+<div id="outline-container-org93c3d3f" class="outline-3">
+<h3 id="org93c3d3f"><span class="section-number-3">1.1</span> Example with Arch Linux</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+<pre class="src src-shell">$ sudo pacman -S --needed gprof
+</pre>
+</div>
+</div>
+</div>
 </div>
 
-<div id="outline-container-org1660bf9" class="outline-2">
-<h2 id="org1660bf9"><span class="section-number-2">2</span> HPC wiki</h2>
+<div id="outline-container-orgaac4ca5" class="outline-2">
+<h2 id="orgaac4ca5"><span class="section-number-2">2</span> Usage</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org6f3732a" class="outline-3">
-<h3 id="org6f3732a"><span class="section-number-3">2.1</span> Measure time</h3>
+<div id="outline-container-org4ffecde" class="outline-3">
+<h3 id="org4ffecde"><span class="section-number-3">2.1</span> Compilation</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+You need to add <code>-pg</code> flag on your compile line to activate gprof.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">$ gcc -pg main.c -o main
+</pre>
 </div>
-<div id="outline-container-org3e38274" class="outline-3">
-<h3 id="org3e38274"><span class="section-number-3">2.2</span> Measure performance using tools</h3>
-<div class="outline-text-3" id="text-2-2">
-<ul class="org-ul">
-<li><a href="./gprof.html">-&gt; gprof</a></li>
-<li><a href="./maqao">-&gt; maqao</a></li>
-<li><a href="./perf.html">-&gt; Linux perf</a></li>
-</ul>
 </div>
 </div>
 
-<div id="outline-container-org13bcc25" class="outline-3">
-<h3 id="org13bcc25"><span class="section-number-3">2.3</span> Optimization</h3>
+<div id="outline-container-orgf5bbfe7" class="outline-3">
+<h3 id="orgf5bbfe7"><span class="section-number-3">2.2</span> Run your app</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+You need to run your app normally now.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">$ ./main your_argument_to_profile
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbb04b4a" class="outline-3">
+<h3 id="orgbb04b4a"><span class="section-number-3">2.3</span> Using gprof command</h3>
 <div class="outline-text-3" id="text-2-3">
-<ul class="org-ul">
-<li><a href="./gcc">-&gt; gcc optimization (in comming)</a></li>
-</ul>
+<p>
+A file has created when you run your app normally. And this file is
+<code>gmon.out</code>.
+</p>
+
+<p>
+You can now using <b>gprof</b> command like:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">$ gprof ./main gmon.out
+</pre>
+</div>
 </div>
 </div>
 </div>

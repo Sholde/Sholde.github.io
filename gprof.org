@@ -1,4 +1,4 @@
-#+TITLE: Secret page
+#+TITLE: gprof
 #+AUTHOR: Sholde
 #+DATE: May 2021
 
@@ -24,20 +24,41 @@
 #+HTML_HEAD: <style>pre.src {background-color: #303030; color: #e5e5e5;}</style>
 #+HTML_HEAD: <style>pre.src:before {color: #000000;}</style>
 
-* Linux command line
+* Installation
 
-  In comming.
-  
-* HPC wiki
-** Measure time
-** Measure performance using tools
+  Use your package manager to install it.
 
-   - [[./gprof.html][-> gprof]]
-   - [[./maqao][-> maqao]]
-   - [[./perf.html][-> Linux perf]]
+** Example with Arch Linux
 
-** Optimization
+   #+BEGIN_SRC shell
+     $ sudo pacman -S --needed gprof
+   #+END_SRC
 
-   - [[./gcc][-> gcc optimization (in comming)]]
+* Usage
+** Compilation
 
+   You need to add ~-pg~ flag on your compile line to activate gprof.
+
+   #+BEGIN_SRC shell
+     $ gcc -pg main.c -o main
+   #+END_SRC
+
+** Run your app
+
+   You need to run your app normally now.
+
+   #+BEGIN_SRC shell
+     $ ./main your_argument_to_profile
+   #+END_SRC
+
+** Using gprof command
+
+   A file has created when you run your app normally. And this file is
+   ~gmon.out~.
+
+   You can now using *gprof* command like:
+
+   #+BEGIN_SRC shell
+     $ gprof ./main gmon.out
+   #+END_SRC
 
