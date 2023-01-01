@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="" />
+    <style>
+@import "https://fonts.googleapis.com/css2?family=Inconsolata&display=swap";:root{--cursor-visibility:hidden}html,body{width:100%;height:100%;overflow:auto;font-family:inconsolata,monospace;font-size:4vmin;line-height:4.1vmin;font-weight:400}body{margin:0;display:flex;flex-direction:row;justify-content:center;align-items:center}#content{min-width:82vmin;min-height:82vmin}::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{border-radius:10px;box-shadow:inset 0 0 1px white}::-webkit-scrollbar-thumb{border-radius:10px;box-shadow:0 0 0 1px white}.cursor,#activity-title:after,#activity-content:after,#cd:after,#whoami:after,#cat:after,#tree:after{visibility:var(--cursor-visibility);content:"|";overflow:hidden;color:#C5C8C6;animation:blink 500ms linear infinite alternate}@keyframes blink{0%{opacity:0}100%{opacity:1}}@media only screen and (min-width:768px){body{font-size:2.5vmin;line-height:2.6vmin}#content{min-width:60vmin}}:root{--cursor-visibility:hidden}body{align-items:unset;overflow-y:scroll}#content{max-width:80vmin}pre{overflow-x:scroll;white-space:pre}@keyframes blink{0%{opacity:0}100%{opacity:1}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body{background:#000}body #terminal{color:#00f633}body #user{color:#00f633}body #dir{color:#00f633}body .Typewriter__cursor{color:#00f633}a{color:#00f633}
+
+
+.navFull {
+    background-color: #282A2E;
+    font-family: "Courier New";
+    font-size: 17px;
+    display: inline;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    padding-top: 5px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.navCredits {
+    float: right;
+    padding-right: 18px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+}
+
+#content::after {
+    content: "\a\a";
+    white-space: pre;
+}
+
+
+</style>
+
+
+
+</head><body><div id="content">
+
+
+
+
+
+    <span id="activity-title"></span> <br>
+ <span id="activity-content"></span> <br>
+
+<script type="text/javascript">
+    async function typewriter(text, elementId, waitAfter) {
+        var n = 0,
+            isTag = false
+        addText = "";
+        const el = document.getElementById(elementId);
+
+        const wait = () => new Promise(r => setTimeout(r, waitAfter));
+        const nowait = () => new Promise(r => r());
+
+        const render = () => el.innerHTML = (text.slice(0, n + 1) + addText);
+
+        const cursor = document.createElement('span');
+        cursor.id = "blink";
+
+        el.style.setProperty("--cursor-visibility", "visible");
+        while (n < text.length) {
+            if (text.charAt(n + 1) === "<") isTag = true;
+            if (text.charAt(n + 1) === ">") isTag = false;
+
+            if (isTag) {
+                n++;
+                continue;
+            }
+
+            requestAnimationFrame(render);
+
+            if (waitAfter === 0) {
+                await nowait();
+            } else {
+                await wait();
+            }
+
+            n++;
+        }
+        el.style.setProperty("--cursor-visibility", "collapse");
+    }
+
+    function parseDelay(d) {
+        const parsed = parseInt(d, 10);
+        if (isNaN(parsed)) return 0;
+        return parsed;
+    }
+
+    const titleDelay = parseDelay("0"),
+        contentDelay = parseDelay("0");
+    const typeeffetct = async () => {
+        await typewriter("\u003cspan id=\u0027terminal\u0027\u003e\u003ch1 id=\u0027title\u0027\u003e\u003c\/h1\u003e\u003c\/span\u003e", "activity-title", titleDelay);
+        await typewriter("\u003cspan id=\u0027terminal\u0027\u003e\u003cp\u003e\u003ca href=\u0022https:\/\/www.top500.org\/\u0022\u003eTop500\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003e\u003ca href=\u0022https:\/\/en.wikichip.org\/wiki\/WikiChip\u0022\u003eWikiChip\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003e\u003ca href=\u0022https:\/\/hpc-wiki.info\/hpc\/HPC_Wiki\u0022\u003eHPC Wiki\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003e\u003ca href=\u0022https:\/\/www.ibm.com\/docs\/en\/xl-c-and-cpp-linux\/16.1.0?topic=cr-index\u0022\u003eIBM wiki\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003e\u003ca href=\u0022https:\/\/www.felixcloutier.com\/x86\/\u0022\u003eFelix Cloutier x86\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003e\u003ca href=\u0022https:\/\/www.intel.com\/content\/www\/us\/en\/docs\/intrinsics-guide\/index.html\u0022\u003eIntel intrinsics\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003e\u003ca href=\u0022https:\/\/developer.arm.com\/architectures\/instruction-sets\/intrinsics\/\u0022\u003eArm intrinsics\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003e\u003ca href=\u0022https:\/\/www.intel.com\/content\/www\/us\/en\/developer\/tools\/oneapi\/onemkl-link-line-advisor.html\u0022\u003eoneMKL link line advisor\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003e\u003ca href=\u0022https:\/\/www.nas.nasa.gov\/software\/npb.html\u0022\u003eNAS\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003e\u003ca href=\u0022https:\/\/hpc-wiki.info\/hpc\/Micro_benchmarking\u0022\u003eMicro benchmarking\u003c\/a\u003e\u003c\/p\u003e\n\u003c\/span\u003e", "activity-content", contentDelay);
+        return;
+    }
+
+    typeeffetct()
+</script>
+
+        </div>
+
+        <span class="navFull">
+
+
+
+
+
+
+
+<span>
+    <a href="./../index.html">Home</a>
+    <span style="color:#C5C8C6">&#8192;|&#8192;</span>
+    <a href="./../index.html">/</a>
+</span>
+
+
+
+
+        <span class="navCredits" style="color:#C5C8C6">
+            Design by
+            <a href="https://github.com/Yukuro/hugo-theme-shell" target="_blank" rel="noopener">Yukuro</a>
+        </span>
+</span>
+
+
+
+    </body>
+</html>
